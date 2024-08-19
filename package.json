@@ -4,7 +4,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js && open http-server"
+    "httpserver": "http-server",
+    "start": "npm run httpserver & node server.js"
   },
   "keywords": [],
   "author": "",

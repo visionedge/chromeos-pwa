@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", showCoffees);
 document.addEventListener('DOMContentLoaded', () => {
   const output = document.getElementById('output');
   //const ws = new WebSocket('https://wss-01mg.onrender.com');
-  const ws = new WebSocket('wss://localhost:8081');
+  const ws = new WebSocket('ws://localhost:8080');
 
   console.log(ws);
 
