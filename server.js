@@ -50,7 +50,7 @@ wss.on('connection', (ws) => {
   // runs a callback on message event
   ws.on('message', (data) => {
     console.log(`Received: ${data}`);
-    ws.send(`Echo: ${message}`);
+    ws.send(`Echo: ${data}`);
 
     // sends the data to all connected clients
     // wss.clients.forEach((client) => {
@@ -58,7 +58,7 @@ wss.on('connection', (ws) => {
     //       client.send(data);
     //     }
     // });
-    
+
     ws.on('close', () => {
       console.log('Client disconnected');
     });    
