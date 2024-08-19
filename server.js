@@ -36,6 +36,7 @@
 //   console.log('WebSocket server is running');
 // });
 
+
 const WebSocket = require('ws');
 
 // starts server instance on http://localhost:8080
@@ -48,11 +49,13 @@ wss.on('connection', (ws) => {
 
   // runs a callback on message event
   ws.on('message', (data) => {
-    console.log(`Received: ${message}`);
-    ws.send(`Echo: ${message}`);
-  });
+    console.log(`Received: ${data}`);
 
-  ws.on('close', () => {
-    console.log('Client disconnected');
+    // sends the data to all connected clients
+    wss.clients.forEach((client) => {
+        if (client.readyState === WebSocket.OPEN) {
+          client.send(data);
+        }
+    });
   });
 });
