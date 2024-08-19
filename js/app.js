@@ -59,8 +59,8 @@
 //   };
 // });
 
-//const connection = new WebSocket("wss://localhost:8080");
-const connection = new WebSocket("wss://chromeos-pwa.onrender.com:8080");
+const connection = new WebSocket("ws://localhost:8080");
+//const connection = new WebSocket("wss://chromeos-pwa.onrender.com:8080");
 const button = document.querySelector("#send");
 
 connection.onopen = (event) => {
