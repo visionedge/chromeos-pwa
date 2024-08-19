@@ -56,7 +56,3 @@ wss.on('connection', (ws) => {
     console.log('Client disconnected');
   });
 });
-
-server.listen(8080, () => {
-  console.log('WebSocket server is running');
-});
