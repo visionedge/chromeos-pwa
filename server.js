@@ -50,12 +50,17 @@ wss.on('connection', (ws) => {
   // runs a callback on message event
   ws.on('message', (data) => {
     console.log(`Received: ${data}`);
+    ws.send(`Echo: ${message}`);
 
     // sends the data to all connected clients
-    wss.clients.forEach((client) => {
-        if (client.readyState === WebSocket.OPEN) {
-          client.send(data);
-        }
-    });
+    // wss.clients.forEach((client) => {
+    //     if (client.readyState === WebSocket.OPEN) {
+    //       client.send(data);
+    //     }
+    // });
+    
+    ws.on('close', () => {
+      console.log('Client disconnected');
+    });    
   });
 });
