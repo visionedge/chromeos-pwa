@@ -60,7 +60,7 @@
 // });
 
 //const connection = new WebSocket("ws://localhost:8080");
-const connection = new WebSocket("wss://chromeos-pwa.onrender.com:443");
+const connection = new WebSocket("wss://chromeos-pwa.onrender.com");
 const button = document.querySelector("#send");
 
 connection.onopen = (event) => {
