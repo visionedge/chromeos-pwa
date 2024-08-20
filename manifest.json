@@ -1,7 +1,7 @@
 {
     "name": "Wipro VisionEdge",
     "short_name": "Wipro VE",
-    "start_url": "index.html",
+    "start_url": "/",
     "display": "fullscreen",
     "background_color": "#fdfdfd",
     "theme_color": "#db4938",
