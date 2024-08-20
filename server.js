@@ -66,20 +66,46 @@
 // });
 
 
-const WebSocket = require('ws')
+// const WebSocket = require('ws')
+// const PORT = process.env.PORT || 3000;
+// const wss = new WebSocket.Server({ port: PORT })
+// wss.on('connection', ws => {
+//   console.log('Client connected');
+
+//   ws.on('message', message => {
+//     console.log(`Received message => ${message}`);
+//   });
+//   ws.send('Hello! Message From Server!!');
+
+//   ws.on('close', () => {
+//     console.log('Client disconnected');
+//   });   
+// });
+
+// console.log('Websocket running on ws://localhost:8080');
+
+'use strict';
+const express = require('express');
+const socketIO = require('socket.io');
 const PORT = process.env.PORT || 3000;
-const wss = new WebSocket.Server({ port: PORT })
-wss.on('connection', ws => {
-  console.log('Client connected');
-
-  ws.on('message', message => {
-    console.log(`Received message => ${message}`);
-  });
-  ws.send('Hello! Message From Server!!');
-
-  ws.on('close', () => {
-    console.log('Client disconnected');
-  });   
+const INDEX = '/index.html';
+const server = express()
+  .use((req, res) => res.sendFile(INDEX, { root: __dirname }))
+  .listen(PORT, () => console.log(`Listening on ${PORT}`));
+const io = require("socket.io")(server,{
+  cors: {
+    origins: "*:*",
+    methods: ["GET", "POST"]
+  }
 });
-
-console.log('Websocket running on ws://localhost:8080');
+io.on('connection', (socket) => {
+  socket.on('disconnect', () => console.log('Client disconnected'));
+  socket.on('messaged', (args) => {
+    io.emit('message', args);
+    console.log(args)
+  });
+   socket.on('event_name', (...args) => {
+    io.emit('message2', args);
+     console.log(args)
+  });
+});

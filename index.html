@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-  <main>
+  <main> -->
     <!-- <nav>
       <h1>Wipro VisionEdge</h1>
       <ul>
@@ -30,15 +30,15 @@
     <button onclick="sendMessage()">Send</button>
     <div id="output"></div>   -->
 
-    <div id="chat"></div>
+    <!-- <div id="chat"></div>
     <input id="name" type="text" placeholder="name" />
     <input id="message" type="text" placeholder="message" />
     <button id="send">Send</button>
-  </main>
+  </main> -->
 
   <!-- <script src="js/app.js"></script> -->
 
-  <script>
+  <!-- <script>
     var conn = new WebSocket('wss://chromeos-pwa.onrender.com');
     conn.onopen = function(e) {
         console.log("Connection established!");
@@ -67,4 +67,37 @@
     }
   </script>  
 </body>
+</html> -->
+
+<html>
+  <head>
+    <script src="/socket.io/socket.io.js"></script>
+  </head>
+  <body>
+     <p id="native-socket-data"></p>
+     <p id="Esp-data"></p>
+  </body>
+  <script>
+    let count =0
+     var socket = io({transports: ['websocket']});
+
+      let el;
+      let le;
+    
+      setInterval(() => {
+        count++
+        socket.emit('messaged',count)
+    
+      }, 1000);
+    
+      socket.on('message', (timeString) => {
+        el = document.getElementById('native-socket-data');
+        el.innerHTML = 'Message ' + timeString;
+      });
+      
+      socket.on('message2', (timeString) => {
+        le = document.getElementById('Esp-data');
+        le.innerHTML = 'Temp From Esp ----------------- ' + timeString[1]["data"] +"°";
+      });
+    </script>
 </html>
