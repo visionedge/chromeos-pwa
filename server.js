@@ -40,7 +40,7 @@
 const WebSocket = require('ws');
 
 // starts server instance on http://localhost:8080
-const wss = new WebSocket.Server({ port: 8080 });
+const wss = new WebSocket.Server({ port: 443 });
 
 // waits for connection to be established from the client
 // the callback argument ws is a unique for each client
@@ -49,8 +49,8 @@ wss.on('connection', (ws) => {
 
   // runs a callback on message event
   ws.on('message', (data) => {
-    console.log(`Received: ${data}`);
-    ws.send(`Echo: ${data}`);
+    console.log(`Received message: ${data}`);
+    ws.send(`Server received: ${data}`);
 
     // sends the data to all connected clients
     // wss.clients.forEach((client) => {
@@ -58,9 +58,11 @@ wss.on('connection', (ws) => {
     //       client.send(data);
     //     }
     // });
-
-    ws.on('close', () => {
-      console.log('Client disconnected');
-    });    
   });
+
+  ws.on('close', () => {
+    console.log('Client disconnected');
+  });    
 });
+
+console.log('Websocket running on ws://localhost:8080');

@@ -59,8 +59,8 @@
 //   };
 // });
 
-const connection = new WebSocket("ws://localhost:8080");
-//const connection = new WebSocket("wss://chromeos-pwa.onrender.com:8080");
+//const connection = new WebSocket("ws://localhost:8080");
+const connection = new WebSocket("wss://chromeos-pwa.onrender.com:443");
 const button = document.querySelector("#send");
 
 connection.onopen = (event) => {
@@ -79,6 +79,7 @@ connection.onmessage = (event) => {
   // append received message from the server to the DOM element 
   const chat = document.querySelector("#chat");
   chat.innerHTML += event.data;
+  console.log("WebSocket message from server: ", event.data);
 };
 
 button.addEventListener("click", () => {
