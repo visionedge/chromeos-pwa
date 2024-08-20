@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Wipro VisionEdge PWA</title>
-    <link rel="manifest" id="my-manifest-placeholder">
     <script src="/socket.io/socket.io.js"></script>
   </head>  
 
@@ -46,13 +45,12 @@ var manifestJSON = {
       }
     ]    
   };
-  const stringManifest = JSON.stringify(manifestJSON);
-  console.log(stringManifest);
-  const blob = new Blob([stringManifest], {type: 'application/json'});
-  console.log(blob);
-  const manifestURL = URL.createObjectURL(blob);
-  console.log(manifestURL);
-  document.querySelector('#my-manifest-placeholder').setAttribute('href', manifestURL);  
+  let content = encodeURIComponent(JSON.stringify(manifest)); 
+let url = "data:application/manifest+json,"+content; 
+let element = document.createElement('link'); 
+element.setAttribute('rel', 'manifest'); 
+element.setAttribute('href', url); 
+document.querySelector('head').appendChild(element);
 
     let count =0
      var socket = io({transports: ['websocket']});
