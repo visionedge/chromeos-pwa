@@ -6,5 +6,27 @@
     "background_color": "#fdfdfd",
     "theme_color": "#db4938",
     "orientation": "landscape",
-    "description": "I am Batman"  
+    "description": "I am Batman",
+    "icons": [
+      {
+        "src": "icon-192x192.png",
+        "type": "image/png", "sizes": "192x192"
+      },
+      {
+        "src": "icon-892x620.png",
+        "type": "image/png", "sizes": "892x620"
+      }
+    ],
+    "screenshots": [
+      {
+        "src": "icon-892x620.png",
+        "type": "image/png", "sizes": "892x620",
+        "form_factor": "narrow"
+      },      
+      {
+        "src": "icon-892x620.png",
+        "type": "image/png", "sizes": "892x620",
+        "form_factor": "wide"
+      }
+    ]    
   }
