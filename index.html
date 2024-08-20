@@ -36,7 +36,27 @@
     <button id="send">Send</button>
   </main>
 
-  <script src="js/app.js"></script>
+  <!-- <script src="js/app.js"></script> -->
+
+  <script>
+    var conn = new WebSocket('wss://chromeos-pwa.onrender.com');
+    conn.onopen = function(e) {
+        console.log("Connection established!");
+    };
+    setInterval(() => {
+      conn.send('Hello server!');
+    }, 1000);
+    conn.onmessage = function(e) {
+        console.log(e.data);
+    };
+    conn.onclose = function(e) {
+        console.log(e.code);
+        console.log(e.reason);
+    };              
+    conn.onerror = function(e) {
+        console.log(e);
+    };      
+</script>  
   <script>
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('/serviceworker.js').then((registration) => {
